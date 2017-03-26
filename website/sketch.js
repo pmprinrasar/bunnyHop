@@ -8,11 +8,16 @@ var dif = 0
 var minDistance = 200
 var bunny1 = [[],[]]
 var bunny2 = [[],[]]
+var bg = []
+var bgImage = []
 var earth = []
 
 function setup()
 {
   imageMode(CENTER)
+  bg.push(loadImage("img/bg1.png"))
+  bg.push(loadImage("img/bg2.png"))
+  bg.push(loadImage("img/bg3.png"))
   bunny1[0].push(loadImage("img/bunny111.png"))
   bunny1[0].push(loadImage("img/bunny121.png"))
   bunny1[1].push(loadImage("img/bunny112.png"))
@@ -30,6 +35,10 @@ function setup()
   mee = new player(1);
   mee2 = new player(2)
   imageMode(CORNER)
+  bgImage.push(new backG(2))
+  bgImage.push(new backG(1))
+  bgImage.push(new backG(0))
+
   pl.push(new wall(stage.width/2-50,500,false,false));
   pl.push(new wall(200,500,false,false));
   pl.push(new wall(stage.width-70,300,true,false));
@@ -40,7 +49,6 @@ function setup()
 function makePlat()
 {
   var x = Math.floor(Math.random() * (stage.width-380))
-  console.log(x)
   var y = -150
   pl.push(new wall(x, y,false,false))
   var tmp = Math.floor(Math.random() * (stage.width-380))
@@ -60,7 +68,13 @@ function draw()
   {
     dif = 3
   }
+
   background(72,188,214)
+  for (var i = 0; i<bgImage.length; i++)
+  {
+    bgImage[i].y += dif/10*(i+2)
+    bgImage[i].show()
+  }
   mee2.update()
   mee2.show()
   mee.update()
@@ -69,11 +83,12 @@ function draw()
   {
     makePlat();
   }
-  for (var i =0; i<pl.length; i++)
+  for (var i = 0; i<pl.length; i++)
   {
     pl[i].y += dif
     pl[i].show()
   }
+
 
   //handling keyboard input
   if(keyIsDown(LEFT_ARROW))
