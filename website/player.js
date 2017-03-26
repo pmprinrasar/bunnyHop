@@ -4,16 +4,35 @@ function player()
   this.x = 100
   this.y = 100
   this.diam = 50
+  this.height = 50 * 5/3
   this.velx=0
   this.vely= gravity
   this.jumpCount=2
+  this.dir=0
+
 
   //draws the circle
   this.show = function()
   {
     fill(250,150,100)
     //ellipse(this.x,this.y,this.diam,this.diam)
-    image(bunny1[0], this.x, this.y, this.diam, this.diam)
+    if(this.velx > 0)
+    {
+      this.dir = 0
+    }
+    if(this.velx < 0)
+    {
+      this.dir = 1
+    }
+    if(this.velx != 0)
+    {
+      //walking
+      var sprite = (Math.floor(frameCount/7))%2
+      image(bunny1[this.dir][sprite], this.x, this.y, this.diam, this.diam*5/3)
+    }else{
+      //standing
+      image(bunny1[this.dir][0], this.x, this.y, this.diam, this.diam*5/3)
+    }
     //this.update()
   }
   //moves the circle
@@ -56,13 +75,13 @@ function player()
   }
   this.collideY = function(wally)
   {
-    if(this.y-(this.diam/2) <= wally.y +wally.height && this.y+(this.diam/2) >= wally.y+ wally.height && this.x >wally.x && this.x <wally.x+wally.width)
+    if(this.y-(this.height/2) <= wally.y +wally.height && this.y+(this.height/2) >= wally.y+ wally.height && this.x >wally.x && this.x <wally.x+wally.width)
     {
-      this.y =wally.y+wally.height+(this.diam/2)
+      this.y =wally.y+wally.height+(this.height/2)
     }
-    if(this.y+(this.diam/2) >= wally.y && this.y+(this.diam/2) <= wally.y+wally.height && this.x >wally.x && this.x< wally.x+ wally.width)
+    if(this.y+(this.height/2) >= wally.y && this.y+(this.height/2) <= wally.y+wally.height && this.x >wally.x && this.x< wally.x+ wally.width)
     {
-      this.y =wally.y-(this.diam/2)
+      this.y =wally.y-(this.height/2)
       this.jumpCount = 2
     }
   }

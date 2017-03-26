@@ -3,21 +3,29 @@ var speed = 8
 var mee;
 var pl= [];
 
-var bunny1 = []
+var bunny1 = [[],[]]
 var bunny2 = []
-
+var earth = []
 
 function setup()
 {
-  bunny1.push(loadImage("img/bunny11.png"))
-  bunny1.push(loadImage("img/bunny12.png"))
+  imageMode(CENTER)
+  bunny1[0].push(loadImage("img/bunny111.png"))
+  bunny1[0].push(loadImage("img/bunny121.png"))
+  bunny1[1].push(loadImage("img/bunny112.png"))
+  bunny1[1].push(loadImage("img/bunny122.png"))
   bunny2.push(loadImage("img/bunny21.png"))
   bunny2.push(loadImage("img/bunny22.png"))
+  earth.push(loadImage("img/platformBig.png"))
+  earth.push(loadImage("img/platformSmall.png"))
+  earth.push(loadImage("img/platformBigV.png"))
+  earth.push(loadImage("img/platformSmallV.png"))
 
   createCanvas(800,600)
   mee = new player();
-  pl.push(new wall(400,100,100,300));
-  pl.push(new wall(0,500,600,100));
+  imageMode(CORNER)
+  pl.push(new wall(400,100,false,false));
+  pl.push(new wall(0,500,false,false));
 }
 function draw()
 {
