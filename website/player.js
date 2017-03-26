@@ -12,7 +12,8 @@ function player()
   this.show = function()
   {
     fill(250,150,100)
-    ellipse(this.x,this.y,this.diam,this.diam)
+    //ellipse(this.x,this.y,this.diam,this.diam)
+    image(bunny1[0], this.x, this.y, this.diam, this.diam)
     //this.update()
   }
   //moves the circle
@@ -22,17 +23,22 @@ function player()
     this.y += this.vely
 
     //happens when u hit the floor
-    if(this.y+this.diam >= 500)
+    /*if(this.y+this.diam >= 500)
     {
         this.jumpCount =2
         this.y-= this.vely
-    }
+    }*/
+
     if(this.vely != gravity)
     {
       this.vely ++
     }
-    this.collideX(pl1)
-    this.collideY(pl1)
+    for (var i =0; i<pl.length; i++)
+    {
+      this.collideX(pl[i])
+      this.collideY(pl[i])
+    }
+
   }
   this.collideX = function(wally)
   {
