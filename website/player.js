@@ -1,8 +1,8 @@
-function player()
+function player(player)
 {
   //player variables
-  this.x = 100
-  this.y = 100
+  this.x = window.innerWidth/2
+  this.y = 400
   this.diam = 50
   this.height = 50 * 5/3
   this.velx=0
@@ -14,6 +14,7 @@ function player()
   //draws the circle
   this.show = function()
   {
+    imageMode(CENTER)
     fill(250,150,100)
     //ellipse(this.x,this.y,this.diam,this.diam)
     if(this.velx > 0)
@@ -28,10 +29,20 @@ function player()
     {
       //walking
       var sprite = (Math.floor(frameCount/7))%2
-      image(bunny1[this.dir][sprite], this.x, this.y, this.diam, this.diam*5/3)
+      if(player == 1)
+      {
+        image(bunny1[this.dir][sprite], this.x, this.y, this.diam, this.diam*5/3)
+      }else{
+        image(bunny2[this.dir][sprite], this.x, this.y, this.diam, this.diam*5/3)
+      }
     }else{
       //standing
-      image(bunny1[this.dir][0], this.x, this.y, this.diam, this.diam*5/3)
+      if(player == 1)
+      {
+        image(bunny1[this.dir][0], this.x, this.y, this.diam, this.diam*5/3)
+      }else {
+        image(bunny2[this.dir][0], this.x, this.y, this.diam, this.diam*5/3)
+      }
     }
     //this.update()
   }

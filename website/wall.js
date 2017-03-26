@@ -21,10 +21,8 @@ function wall(x,y,small, vertical)
     //fill(100,200,100)
     this.width = earth[this.image].width/2
     this.height = earth[this.image].height/2
+    imageMode(CORNER)
     image(earth[this.image],this.x,this.y,this.width,this.height)
-
-
-    //rect(this.x,this.y,this.width,this.height)
   }
 
   return this
