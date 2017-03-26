@@ -2,7 +2,7 @@
 
 ![Sketch](sketch.png)
 
-A 24 hours project, where I learned how to become a MASTER CODER thanks to bunny GOD(@pedsm) which used the powers of JS and P5.js to bring this amazing Saturday night family entertainment system. Hop away!
+A 24 hours project, where I learned how to become a MASTER CODER thanks to bunny GOD([@pedsm](https://github.com/pedsm/)) which used the powers of JS and P5.js to bring this amazing Saturday night family entertainment system. Hop away!
 
 ## Technologies
 
