@@ -11,6 +11,9 @@ var bunny2 = [[],[]]
 var bg = []
 var bgImage = []
 var earth = []
+var rektPlayer = 0
+var img
+var started = false
 
 function setup()
 {
@@ -30,6 +33,7 @@ function setup()
   earth.push(loadImage("img/platformSmall.png"))
   earth.push(loadImage("img/platformBigV.png"))
   earth.push(loadImage("img/platformSmallV.png"))
+  img = loadImage("img/intro.png")
 
   createCanvas(stage.width,stage.height-30)
   mee = new player(1);
@@ -64,12 +68,22 @@ function makePlat()
 }
 function draw()
 {
-  if(frameCount > 120)
+  background(72,188,214)
+
+
+  if(mee.y > stage.height)
+  {
+    gameOver(1)
+  }
+  if(mee2.y > stage.height)
+  {
+    gameOver(2)
+  }
+  if(frameCount > 80)
   {
     dif = 3
   }
 
-  background(72,188,214)
   for (var i = 0; i<bgImage.length; i++)
   {
     bgImage[i].y += dif/10*(i+2)
@@ -89,6 +103,12 @@ function draw()
     pl[i].show()
   }
 
+  if(!started)
+  {
+    frameRate(1)
+    imageMode(CENTER)
+    image(img,stage.width/2,stage.height/2)
+  }
 
   //handling keyboard input
   if(keyIsDown(LEFT_ARROW))
@@ -108,7 +128,32 @@ function draw()
     mee2.velx = 5
   }
 }
+function gameOver(player)
+{
+  text("hello", 0, 0);
+  console.log("RIP")
+  var s = "Game Over, Player "+ player +"\n GOT REKT";
+  console.log(s)
+  fill(255,130,130)
+  textAlign(CENTER)
+  textSize(50)
+  var t = text(s,stage.width/2,300)
+  //t.show()
 
+  throw("Hello")
+
+  noLoop()
+}
+function mouseClicked()
+{
+  if(started)
+  {
+    location.reload()
+  }
+  console.log("Game started")
+  started =true
+  frameRate(60)
+}
 function keyPressed()
 {
   if (keyCode == UP_ARROW)
